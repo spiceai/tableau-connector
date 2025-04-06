@@ -1,6 +1,6 @@
-# Spice Tableau Connector
+# Spice.ai Tableau Connector
 
-Spice Tableau Connector is a JDBC-based connector that allows Tableau users to easily connect to and visualize data from Spice Cloud Platform and self-hosted Spice.ai OSS instances.
+The Spice.ai Tableau Connector is a JDBC-based connector that enables Tableau users to easily connect to and visualize data from self-hosted Spice.ai Open Source and Spice Cloud Platform instances.
 
 ## Features
 
@@ -70,7 +70,7 @@ The connector uses [TDVT framework](https://tableau.github.io/connector-plugin-s
 make install
 
 # Run Spice instance
-cd tdvt && spice run 
+cd tdvt && spice run
 
 # Run TDVT tests with the installed Spice connector
 make test

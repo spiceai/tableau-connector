@@ -2,13 +2,13 @@
 
 <connector-plugin class='spice_jdbc' superclass='jdbc' plugin-version='0.1.0' name='Spice' version="21.3" min-version-tableau="2020.3">
   <vendor-information>
-      <company name="Spice"/>
+      <company name="Spice AI, Inc."/>
       <support-link url="https://github.com/spiceai/tableau-connector/issues"/>
       <driver-download-link url="https://spiceai.org/docs/clients/tableau"/>
   </vendor-information>
   <connection-customization class="spice_jdbc" enabled="true" version="10.0">
-    <vendor name="Spice"/>
-    <driver name="Spice"/>
+    <vendor name="Spice AI, Inc."/>
+    <driver name="Spice.ai"/>
     <customizations>
       <!-- https://tableau.github.io/connector-plugin-sdk/docs/capabilities -->
 
