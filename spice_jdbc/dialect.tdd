@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialect name="SpiceDialect" base="PostgreSQL90Dialect" class="spice_jdbc" version="18.1">
+  
+</dialect>
