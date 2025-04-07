@@ -14,7 +14,7 @@
         return (product === "v-cloud" || tlsMode === "require" || tlsMode === "required");
     }
 
-    if (sslRequired(product)) {
+    if (tlsRequired(product)) {
         props["useEncryption"] = "true";
     } else {
         props["useEncryption"] = "false";
