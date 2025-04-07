@@ -6,7 +6,7 @@ The Spice.ai Tableau Connector is a JDBC-based connector that enables Tableau us
 
 - Connect Tableau to Spice data sources: [Spice Cloud Platform](https://spice.ai/), self-hosted [Spice.ai OSS](https://spiceai.org/)
 - API key authentication
-- SSL encryption for secure connections
+- TLS encryption for secure connections
 - Advanced SQL query [optimizations](https://tableau.github.io/connector-plugin-sdk/docs/capabilities) for enhanced performance, leveraging the [Apache Arrow Flight SQL JDBC Driver](https://arrow.apache.org/docs/java/flight_sql_jdbc_driver.html) to provide high-speed data access compared to standard JDBC connector.
 
 ## Installation
