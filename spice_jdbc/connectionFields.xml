@@ -4,7 +4,7 @@
   <field name="v-spice-product" label="Product" category="authentication" value-type="selection" default-value="v-cloud">
         <selection-group>
             <option value="v-cloud" label="Spice Cloud Platform"/>
-            <option value="v-oss" label="Spice.ai Open Source"/>
+            <option value="v-oss" label="Spice.ai Self Hosted"/>
         </selection-group>
     </field>
   <field name="server" label="Server" value-type="string" category="endpoint" default-value="localhost">
