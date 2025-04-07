@@ -8,10 +8,10 @@
     var props = {};
 
     const product = attr["v-spice-product"];
-    const isUseSSL = attr["sslmode"];
+    const tlsMode = attr["sslmode"];
 
-    function sslRequired(product) {
-        return (product === "v-cloud" || isUseSSL === "require" || isUseSSL === "required");
+    function tlsRequired(product) {
+        return (product === "v-cloud" || tlsMode === "require" || tlsMode === "required");
     }
 
     if (sslRequired(product)) {
