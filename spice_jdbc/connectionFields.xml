@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<connection-fields>
+  <field name="v-spice-product" label="Product" category="authentication" value-type="selection" default-value="v-cloud">
+        <selection-group>
+            <option value="v-cloud" label="Spice Cloud Platform"/>
+            <option value="v-oss" label="Spice.ai OSS Self-Hosted"/>
+        </selection-group>
+    </field>
+  <field name="server" label="Server" value-type="string" category="endpoint" default-value="localhost">
+    <conditions>
+      <condition field="v-spice-product" value="v-oss"/>
+    </conditions>
+  </field>
+
+  <field name="port" label="Port" value-type="string" category="endpoint" default-value="50051">
+    <conditions>
+      <condition field="v-spice-product" value="v-oss"/>
+    </conditions>
+  </field>
+
+  <field name="sslmode" label="Use SSL" value-type="boolean" category="general" default-value="" >
+    <conditions>
+      <condition field="v-spice-product" value="v-oss"/>
+    </conditions>
+    <boolean-options>
+      <false-value value="" />
+      <true-value value="require" />
+    </boolean-options>
+  </field>
+
+  <field name="authentication" label="Authentication" category="authentication" value-type="selection" default-value="auth-user-pass" >
+    <selection-group>
+      <conditions>
+        <condition field="v-spice-product" value="v-oss"/>
+      </conditions>
+      <option value="auth-none" label="No Auth"/>
+      <option value="auth-api-key" label="API Key"/>
+    </selection-group>
+    <selection-group>
+      <conditions>
+        <condition field="v-spice-product" value="v-cloud"/>
+      </conditions>
+      <option value="auth-api-key" label="API Key"/>
+    </selection-group>
+  </field>
+   <field name="password" label="API Key" category="authentication" value-type="string" secure="true">
+    <conditions>
+      <condition field="authentication" value="auth-api-key"/>
+    </conditions>
+  </field>
+
+  <field name="v-disable-cert-verification" label="Disable Certificate Verification" category="advanced" value-type="boolean" default-value="false" optional="true">
+    <boolean-options>
+      <false-value value="false"/>
+      <true-value value="true"/>
+    </boolean-options>
+  </field>
+
+</connection-fields>

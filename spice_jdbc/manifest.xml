@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<connector-plugin class='spice_jdbc' superclass='jdbc' plugin-version='0.1.0' name='Spice' version="21.3" min-version-tableau="2020.3">
+  <vendor-information>
+      <company name="Spice AI, Inc."/>
+      <support-link url="https://github.com/spiceai/tableau-connector/issues"/>
+      <driver-download-link url="https://spiceai.org/docs/clients/tableau"/>
+  </vendor-information>
+  <connection-customization class="spice_jdbc" enabled="true" version="10.0">
+    <vendor name="Spice AI, Inc."/>
+    <driver name="Spice.ai"/>
+    <customizations>
+      <!-- https://tableau.github.io/connector-plugin-sdk/docs/capabilities -->
+
+      <!-- Metadata -->
+      <customization name="CAP_FORCE_CONNECTION_VERIFICATION" value="yes"/>
+      <customization name="CAP_FAST_METADATA" value="yes"/>
+      <customization name="CAP_QUERY_TOP_0_METADATA" value="no"/>
+      <customization name="CAP_QUERY_WHERE_TRUE_METADATA" value="no"/>
+
+      <!-- JDBC -->
+      <customization name="CAP_JDBC_METADATA_READ_FOREIGNKEYS" value="no" />
+      <customization name="CAP_JDBC_QUERY_ASYNC" value="yes"/>
+      <customization name="CAP_JDBC_SUPPRESS_ENUMERATE_DATABASES" value="no"/>
+      <customization name="CAP_JDBC_SUPPRESS_ENUMERATE_SCHEMAS" value="no"/>
+      <customization name="CAP_JDBC_SUPPRESS_ENUMERATE_TABLES" value="no"/>
+      <customization name="CAP_JDBC_SUPPRESS_EMPTY_CATALOG_NAME" value="false"/>
+
+      <!-- Temp Tables and Stored Procedures -->
+      <customization name="CAP_CREATE_TEMP_TABLES" value="no" />
+      <customization name="CAP_CONNECT_STORED_PROCEDURE" value="no"/>
+
+      <!-- Recommended Capabilities (different from default value) -->
+      <customization name="CAP_SUPPORTS_SPLIT_FROM_LEFT" value="yes"/>
+      <customization name="CAP_SUPPORTS_SPLIT_FROM_RIGHT" value="yes"/>
+      <customization name="CAP_SUPPORTS_INITIAL_SQL" value="yes"/>
+      <customization name="CAP_QUERY_GROUP_BY_BOOL" value="yes"/>
+      <customization name="CAP_QUERY_SORT_BY" value="yes"/>
+      <customization name="CAP_QUERY_SUBQUERIES" value="yes"/>
+      <customization name="CAP_QUERY_TOP_N" value="yes"/>
+      <customization name="CAP_SUPPORTS_UNION" value="yes"/>
+      <customization name="CAP_QUERY_BOOLEXPR_TO_INTEXPR" value="no"/>
+
+    </customizations>
+  </connection-customization>
+  <connection-fields file='connectionFields.xml'/>
+  <connection-metadata file='connectionMetadata.xml'/>
+  <connection-resolver file="connectionResolver.tdr"/>
+  <dialect file='dialect.tdd'/>
+</connector-plugin>
