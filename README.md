@@ -44,6 +44,22 @@ make install
 make run-tableau-allow-unsigned
 ```
 
+## Limitations
+
+### Multiplication and Division on Intervals Are Not Supported
+
+Multiplying or dividing intervals is not supported and will result in a `Cannot coerce arithmetic expression` error. For example:
+
+```sql
+SELECT "orders"."order_date" + "orders"."delivery_days" * INTERVAL '1 DAY'
+```
+
+```text
+Error during planning: Cannot coerce arithmetic expression Int64 * Interval(MonthDayNano) to valid types
+```
+
+The limitation is due to limited arithmetic operations support for Interval by Datafusion, tracked as [apache/datafusion#13850](https://github.com/apache/arrow-datafusion/issues/13850).
+
 ## Development
 
 ### Prerequisites
