@@ -4,12 +4,12 @@ name: tdvt
 
 datasets:
   - from: file:TestV1/Calcs_headers.csv
-    name: TestV1.Calcs
+    name: calcs
     params:
       csv_has_header: true
 
       
   - from: file:TestV1/Staples_utf8_headers.csv
-    name: TestV1.Staples
+    name: staples
     params:
       csv_has_header: true

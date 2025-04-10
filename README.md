@@ -58,7 +58,7 @@ SELECT "orders"."order_date" + "orders"."delivery_days" * INTERVAL '1 DAY'
 Error during planning: Cannot coerce arithmetic expression Int64 * Interval(MonthDayNano) to valid types
 ```
 
-The limitation is due to limited arithmetic operations support for Interval by Datafusion, tracked as [apache/datafusion#13850](https://github.com/apache/arrow-datafusion/issues/13850).
+The limitation is due to limited arithmetic operations support for Interval by DataFusion, tracked as [apache/datafusion#13850](https://github.com/apache/arrow-datafusion/issues/13850).
 
 ## Development
 
