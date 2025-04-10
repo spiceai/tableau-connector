@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dialect name="SpiceDialect" base="PostgreSQL90Dialect" class="spice_jdbc" version="18.1">
-  
+    <function-map>
+        <!-- Override default mapping to`VARIANCE` that is not available in DF -->
+        <function group="aggregate" name="VAR" return-type="real">
+            <!-- https://datafusion.apache.org/user-guide/sql/aggregate_functions.html#var -->
+            <formula>VAR(%1)</formula>
+            <unagg-formula>NULL</unagg-formula>
+            <argument type="real" />
+        </function>
+        <function group='numeric' name='SIGN' return-type='int'>
+            <!-- https://datafusion.apache.org/user-guide/sql/scalar_functions.html#signum -->
+            <formula>CAST(SIGNUM(%1) AS SMALLINT)</formula>
+            <argument type='real' />
+        </function>
+        <!-- Override %1^2 which is not supported -->
+        <function group='numeric' name='SQUARE' return-type='real'>
+            <formula>((%1)*(%1))</formula>
+            <argument type='real' />
+        </function>
+         <function group='numeric' name='SQUARE' return-type='int'>
+            <formula>((%1)*(%1))</formula>
+            <argument type='int' />
+        </function>
+    </function-map>
 </dialect>
