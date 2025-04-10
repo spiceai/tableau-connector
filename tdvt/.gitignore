@@ -1,5 +1,8 @@
 /test_results_combined.csv
+/test_metadata.csv
 /tdvt_output_combined.json
 /tdvt_log_combined.txt
 /tdvt_actuals_combined.zip
 /tabquery_logs.zip
+/*.twb
+/*.twbr

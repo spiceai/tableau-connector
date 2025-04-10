@@ -9,6 +9,7 @@ logs
 
 # Python virtual environment
 .venv
+__pycache__
 
 # Build artifacts
 *.taco

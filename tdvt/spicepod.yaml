@@ -3,13 +3,13 @@ kind: Spicepod
 name: tdvt
 
 datasets:
-  - from: file:TestV1/Calcs_headers.csv
+  - from: file:TestV1/calcs.parquet
     name: calcs
-    params:
-      csv_has_header: true
+    acceleration: 
+      enabled: true
 
-      
-  - from: file:TestV1/Staples_utf8_headers.csv
+  - from: file:TestV1/staples.parquet
     name: staples
-    params:
-      csv_has_header: true
+    acceleration: 
+      enabled: true
+
