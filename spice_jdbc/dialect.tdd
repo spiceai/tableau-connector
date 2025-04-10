@@ -22,5 +22,9 @@
             <formula>((%1)*(%1))</formula>
             <argument type='int' />
         </function>
+        <function group='date' name='ISDATE' return-type='bool'>
+            <formula>(TRY_CAST(%1 AS DATE) IS NOT NULL)</formula>
+            <argument type='str' />
+        </function>
     </function-map>
 </dialect>
