@@ -21,9 +21,10 @@ jobs:
         run: |
           brew install make
 
-      - name: Package
+      - name: Package (unsigned)
         run: |
           make package
+          mv spice.taco spice_unsigned.taco
 
       - name: Upload
         uses: softprops/action-gh-release@v2
@@ -32,4 +33,4 @@ jobs:
           draft: true
           prerelease: true
           fail_on_unmatched_files: true
-          files: spice.taco
+          files: spice_unsigned.taco
