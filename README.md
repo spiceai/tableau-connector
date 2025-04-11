@@ -11,13 +11,7 @@ The Spice.ai Tableau Connector is a JDBC-based connector that enables Tableau us
 
 ## Installation
 
-### Install Arrow Flight SQL JDBC Driver
-
-#### macOS
-
-```bash
-curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar -o ~/Library/Tableau/Drivers/flight-sql-jdbc-driver-16.1.0.jar
-```
+### Step 1. Install Arrow Flight SQL JDBC Driver
 
 #### Windows
 
@@ -25,24 +19,59 @@ curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/1
 Invoke-WebRequest -Uri "https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar" -OutFile "C:\Program Files\Tableau\Drivers\flight-sql-jdbc-driver-16.1.0.jar"
 ```
 
-### Pre-built Connector
+#### macOS
+
+```bash
+curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar -o ~/Library/Tableau/Drivers/flight-sql-jdbc-driver-16.1.0.jar
+```
+
+#### Linux
+
+```bash
+curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar -o /opt/tableau/tableau_driver/jdbc/flight-sql-jdbc-driver-16.1.0.jar
+```
+
+### Step 2. Install Spice.ai Tableau Connector
+
+#### Tableau Server
 
 1. Download the latest `spice.taco` file from the [releases page](https://github.com/spiceai/tableau-connector/releases)
 2. Copy to your Tableau connectors directory:
-   - macOS: `~/Documents/My Tableau Repository/Connectors/`
-   - Windows: `C:\Users\[USERNAME]\Documents\My Tableau Repository\Connectors\`
+   - Windows: `C:\Program Files\Tableau\Connectors`
 
-### Build from Source
+      ```powershell
+      Invoke-WebRequest -Uri "https://github.com/spiceai/tableau-connector/releases/latest/download/spice.taco" -OutFile "C:\Program Files\Tableau\Connectors\spice.taco"
+      ```
 
-```bash
-# Clone the repository
-git clone https://github.com/spiceai/tableau-connector.git
-cd tableau-connector
+   - Linux: `/opt/tableau/connectors`
 
-# Package and install
-make install
-make run-tableau-allow-unsigned
-```
+      ```bash
+      curl -L https://github.com/spiceai/tableau-connector/releases/latest/download/spice.taco -o /opt/tableau/connectors/spice.taco
+      ```
+
+3. Restart server: `tsm restart`
+
+#### Tableau Desktop
+
+1. Download the latest `spice.taco` file from the [releases page](https://github.com/spiceai/tableau-connector/releases)
+2. Copy to your Tableau connectors directory:
+   - Windows: `C:\Users\[USERNAME]\Documents\My Tableau Repository\Connectors`
+
+      ```powershell
+      Invoke-WebRequest -Uri "https://github.com/spiceai/tableau-connector/releases/latest/download/spice.taco" -OutFile "C:\Users\[USERNAME]\Documents\My Tableau Repository\Connectors\spice.taco"
+      ```
+
+   - macOS: `~/Documents/My Tableau Repository/Connectors`
+
+      ```bash
+      curl -L https://github.com/spiceai/tableau-connector/releases/latest/download/spice.taco -o ~/Documents/My\ Tableau\ Repository/Connectors/spice.taco
+      ```
+
+   - Linux: `/opt/tableau/connectors`
+
+      ```bash
+      curl -L https://github.com/spiceai/tableau-connector/releases/latest/download/spice.taco -o /opt/tableau/connectors/spice.taco
+      ```
 
 ## Limitations
 
@@ -66,6 +95,12 @@ The limitation is due to limited arithmetic operations support for Interval by D
 
 - `make` command-line tool
 - Python 3.x installed
+- Clone the repository
+
+```bash
+git clone https://github.com/spiceai/tableau-connector.git
+cd tableau-connector
+```
 
 ### Run Connector
 
@@ -90,6 +125,13 @@ cd tdvt && spice run
 
 # Run TDVT tests with the installed Spice connector
 make test
+```
+
+### Package
+
+```bash
+# Create an unsigned `spice.taco` connector version
+make package
 ```
 
 ## License
