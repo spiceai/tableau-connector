@@ -18,10 +18,6 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: Install Make
-        run: |
-          brew install make
-
       - name: Make Package
         run: |
           make package
