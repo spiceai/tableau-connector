@@ -3,10 +3,9 @@ on:
   workflow_dispatch:
   release:
     types: [created]
-
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,14 +26,7 @@ jobs:
           make package
           mv spice.taco spice_unsigned.taco
 
-      - name: Upload unsigned artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: spice_unsigned.taco
-          path: spice_unsigned.taco
-          if-no-files-found: error
-
-      - name: Upload to release (unsigned)
+      - name: Upload
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
@@ -42,68 +34,3 @@ jobs:
           prerelease: true
           fail_on_unmatched_files: true
           files: spice_unsigned.taco
-
-  sign:
-    runs-on: ubuntu-latest
-    needs: build
-    environment: signed_release
-    steps:
-      - name: Download unsigned artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: spice_unsigned.taco
-          path: .
-
-      - name: Set up Java for signing
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'zulu'
-
-      - name: Prepare for DigiCert signing
-        run: |
-          mkdir -p signing_utility
-          cp /tmp/smpkcs11.so /tmp/smpkcs11.so || echo "Creating empty file" > /tmp/smpkcs11.so
-          echo "${{ secrets.SM_CLIENT_CERT_FILE_B64 }}" | base64 --decode > /tmp/Certificate_pkcs12.p12 
-          echo "SM_HOST=${{ secrets.SM_HOST }}" >> "$GITHUB_ENV" 
-          echo "SM_API_KEY=${{ secrets.SM_API_KEY }}" >> "$GITHUB_ENV" 
-          echo "SM_CLIENT_CERT_FILE=/tmp/Certificate_pkcs12.p12" >> "$GITHUB_ENV" 
-          echo "SM_CLIENT_CERT_PASSWORD=${{ secrets.SM_CLIENT_CERT_PASSWORD }}" >> "$GITHUB_ENV" 
-          echo "DIGICERT_KEY_ALIAS=${{ secrets.DIGICERT_KEY_ALIAS }}" >> "$GITHUB_ENV"
-        shell: bash
-
-      - name: Create PKCS11 config
-        run: |
-          cat > pkcs11properties.cfg << EOF
-          name=SmToken
-          library=/tmp/smpkcs11.so
-          slotListIndex=0
-          EOF
-        shell: bash
-
-      - name: Sign connector package
-        run: |
-          jarsigner -keystore NONE -storepass NONE -storetype PKCS11 \
-            -sigalg SHA256withRSA \
-            -providerClass sun.security.pkcs11.SunPKCS11 \
-            -providerArg pkcs11properties.cfg \
-            -signedjar spice_signed.taco spice_unsigned.taco \
-            $DIGICERT_KEY_ALIAS \
-            -tsa http://timestamp.digicert.com
-        shell: bash
-
-      - name: Upload signed artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: spice_signed.taco
-          path: spice_signed.taco
-          if-no-files-found: error
-
-      - name: Upload to release (signed)
-        uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
-        with:
-          draft: true
-          prerelease: true
-          fail_on_unmatched_files: true
-          files: spice_signed.taco
