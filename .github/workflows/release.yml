@@ -39,7 +39,7 @@ jobs:
         env:
           DIGICERT_KEY_ALIAS: ${{ secrets.DIGICERT_KEY_ALIAS }}
         run: |
-          jarsigner -tsa http://timestamp.digicert.com -verbose -keystore NONE -storetype PKCS11 -providerClass sun.security.pkcs11.SunPKCS11 -providerArg pkcs11properties.cfg -sigalg SHA256withRSA -signedjar ${{ inputs.signed_binary_name}} ../../spice.taco $DIGICERT_KEY_ALIAS
+          jarsigner -tsa http://timestamp.digicert.com -verbose -keystore NONE -storetype PKCS11 -providerClass sun.security.pkcs11.SunPKCS11 -providerArg pkcs11properties.cfg -sigalg SHA256withRSA -signedjar ${{ inputs.signed_binary_name}} spice.taco $DIGICERT_KEY_ALIAS
         shell: bash
 
       - name: Upload to release
