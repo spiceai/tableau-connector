@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
 
-<connector-plugin class='spice_jdbc' superclass='jdbc' plugin-version='0.1.0' name='Spice' version="21.3" min-version-tableau="2020.3">
+<connector-plugin class='spice_jdbc' superclass='jdbc' plugin-version='0.1.0' name='Spice.ai' version="21.3" min-version-tableau="2020.3">
   <vendor-information>
       <company name="Spice AI, Inc."/>
       <support-link url="https://github.com/spiceai/tableau-connector/issues"/>
