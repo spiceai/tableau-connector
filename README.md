@@ -16,19 +16,19 @@ The Spice.ai Tableau Connector is a JDBC-based connector that enables Tableau us
 #### Windows
 
 ```powershell
-Invoke-WebRequest -Uri "https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar" -OutFile "C:\Program Files\Tableau\Drivers\flight-sql-jdbc-driver-16.1.0.jar"
+Invoke-WebRequest -Uri "https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/18.2.0/flight-sql-jdbc-driver-18.2.0.jar" -OutFile "C:\Program Files\Tableau\Drivers\flight-sql-jdbc-driver-18.2.0.jar"
 ```
 
 #### macOS
 
 ```bash
-curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar -o ~/Library/Tableau/Drivers/flight-sql-jdbc-driver-16.1.0.jar
+curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/18.2.0/flight-sql-jdbc-driver-18.2.0.jar -o ~/Library/Tableau/Drivers/flight-sql-jdbc-driver-18.2.0.jar
 ```
 
 #### Linux
 
 ```bash
-curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/16.1.0/flight-sql-jdbc-driver-16.1.0.jar -o /opt/tableau/tableau_driver/jdbc/flight-sql-jdbc-driver-16.1.0.jar
+curl -L https://repo1.maven.org/maven2/org/apache/arrow/flight-sql-jdbc-driver/18.2.0/flight-sql-jdbc-driver-18.2.0.jar -o /opt/tableau/tableau_driver/jdbc/flight-sql-jdbc-driver-18.2.0.jar
 ```
 
 ### Step 2. Install Spice.ai Tableau Connector
