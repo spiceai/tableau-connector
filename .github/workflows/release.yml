@@ -20,12 +20,12 @@ jobs:
     environment: signed_release
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.4.0
         with:
           submodules: recursive
 
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.3.0
         with:
           name: spice.unsigned.taco
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,7 +37,7 @@ jobs:
           echo "Signed binary name: ${{ inputs.signed_binary_name }}"
 
       - name: Set up Java for signing
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v4.9.1
         with:
           java-version: '11'
           distribution: 'zulu'
@@ -52,13 +52,13 @@ jobs:
         run: .\sign.ps1
 
       - name: Upload ${{ inputs.signed_binary_name }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: ${{ inputs.signed_binary_name }}
           path: ${{ inputs.signed_binary_name }}
 
       - name: Upload to release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.6.2
         if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: true
